@@ -1,5 +1,6 @@
     <?php
     require_once("logica/Admin.php");
+    require_once("logica/Propietario.php")
 
     ?>
 
@@ -67,6 +68,26 @@
                                     echo "<td>" . $ad->getId() . "</td>";
                                     echo "<td>" . $ad->getNombre() . "</td>";
                                     echo "<td>" . $ad->getApellido() . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                                ?>
+                            </div>
+                             <div class="card-header">
+                                <h4>Propietarios</h4>
+                            </div>
+                            <div class="card-body">
+                                <?php
+                                $propietario = new Propietario();
+                                $propietarios = $propietario->consultar();
+                                echo "<table class='table table-striped table-hover'>";
+                                echo "<tr><td>Id</td><td>Nombre</td><td>Apellido</td><td>Fecha</td></tr>";
+                                foreach ($propietarios as $pro) {
+                                    echo "<tr>";
+                                    echo "<td>" . $pro->getId() . "</td>";
+                                    echo "<td>" . $pro->getNombre() . "</td>";
+                                    echo "<td>" . $pro->getApellido() . "</td>";
+                                     echo "<td>" . $pro->getFecha() . "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</table>";
