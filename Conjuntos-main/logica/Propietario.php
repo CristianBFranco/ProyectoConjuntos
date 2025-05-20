@@ -33,4 +33,20 @@ class Propietario extends Persona
         $conexion->cerrar();
         return $propietarios;
     }
+
+    public function autenticar()
+    {
+        $conexion = new Conexion();
+        $propietarioDAO = new PropietarioDAO("", $this->nombre, "", $this->clave);
+        $conexion->abrir();
+        $conexion->ejecutar($propietarioDAO->autenticar());
+        if ($conexion->filas() == 1) {
+            $this->id = $conexion->registro()[0];
+            $conexion->cerrar();
+            return true;
+        } else {
+            $conexion->cerrar();
+            return false;
+        }
+    }
 }
